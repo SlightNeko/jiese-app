@@ -1,0 +1,105 @@
+CREATE TABLE relapse_records (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    timestamp INTEGER NOT NULL,
+    note TEXT
+);
+
+CREATE TABLE running_records (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    timestamp INTEGER NOT NULL,
+    distance_km REAL NOT NULL,
+    duration_sec INTEGER NOT NULL,
+    avg_hr INTEGER,
+    max_hr INTEGER,
+    avg_pace TEXT,
+    avg_cadence INTEGER,
+    max_cadence INTEGER,
+    hr_zones TEXT,
+    ai_analysis TEXT,
+    earned_score REAL NOT NULL DEFAULT 0
+);
+
+CREATE TABLE sleep_records (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date INTEGER NOT NULL UNIQUE,
+    bed_time INTEGER,
+    wake_time INTEGER,
+    total_minutes INTEGER NOT NULL,
+    source TEXT NOT NULL DEFAULT 'manual'
+);
+
+CREATE TABLE settings (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL
+);
+
+-- Relapse queries
+getLatestRelapse:
+SELECT * FROM relapse_records ORDER BY timestamp DESC LIMIT 1;
+
+getTodayRelapses:
+SELECT * FROM relapse_records WHERE timestamp >= :dayStart AND timestamp < :dayEnd ORDER BY timestamp;
+
+getRelapseCountByDateRange:
+SELECT COUNT(*) AS cnt FROM relapse_records WHERE timestamp >= :start AND timestamp < :end;
+
+getRelapseCountByDate:
+SELECT COUNT(*) AS cnt FROM relapse_records WHERE timestamp >= :dayStart AND timestamp < :dayEnd;
+
+getAllRelapses:
+SELECT * FROM relapse_records ORDER BY timestamp DESC;
+
+getRelapsesBetween:
+SELECT * FROM relapse_records WHERE timestamp >= :start AND timestamp < :end ORDER BY timestamp;
+
+insertRelapse:
+INSERT INTO relapse_records (timestamp, note) VALUES (?, ?);
+
+deleteRelapse:
+DELETE FROM relapse_records WHERE id = ?;
+
+-- Running queries
+getAllRunningRecords:
+SELECT * FROM running_records ORDER BY timestamp DESC;
+
+getRunningRecordsBetween:
+SELECT * FROM running_records WHERE timestamp >= :start AND timestamp < :end ORDER BY timestamp;
+
+getRecentRunningRecords:
+SELECT * FROM running_records ORDER BY timestamp DESC LIMIT :limit;
+
+getRunningStats:
+SELECT
+    COALESCE(SUM(distance_km), 0) AS total_distance,
+    COALESCE(SUM(earned_score), 0) AS total_score,
+    COUNT(*) AS total_count
+FROM running_records
+WHERE timestamp >= :start AND timestamp < :end;
+
+insertRunningRecord:
+INSERT INTO running_records (timestamp, distance_km, duration_sec, avg_hr, max_hr, avg_pace, avg_cadence, max_cadence, hr_zones, ai_analysis, earned_score)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteRunningRecord:
+DELETE FROM running_records WHERE id = ?;
+
+-- Sleep queries
+getSleepRecord:
+SELECT * FROM sleep_records WHERE date = ?;
+
+upsertSleepRecord:
+INSERT OR REPLACE INTO sleep_records (date, bed_time, wake_time, total_minutes, source)
+VALUES (?, ?, ?, ?, ?);
+
+getSleepRecordsBetween:
+SELECT * FROM sleep_records WHERE date >= :start AND date <= :end ORDER BY date;
+
+-- Settings queries
+getSetting:
+SELECT value FROM settings WHERE key = ?;
+
+setSetting:
+INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?);
+
+getAllSettings:
+SELECT * FROM settings;
