@@ -1,27 +1,21 @@
 [versions]
-agp = "8.2.2"
-kotlin = "2.0.21"
-compose-multiplatform = "1.7.1"
+agp = "8.7.3"
+kotlin = "2.4.0"
+compose-multiplatform = "1.11.1"
 sqldelight = "2.0.2"
 ktor = "2.3.12"
 kotlinx-serialization = "1.7.3"
 kotlinx-datetime = "0.6.1"
-compose-navigation = "2.8.0"
-miuix = "0.8.0"
+miuix = "0.9.3"
 health-connect = "1.1.0"
 androidx-activity = "1.9.3"
 coroutines = "1.9.0"
 
 [libraries]
-# Compose
-compose-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "compose-navigation" }
-
 # Miuix HyperOS UI
 miuix-ui = { module = "top.yukonga.miuix.kmp:miuix-ui", version.ref = "miuix" }
 miuix-preference = { module = "top.yukonga.miuix.kmp:miuix-preference", version.ref = "miuix" }
 miuix-icons = { module = "top.yukonga.miuix.kmp:miuix-icons", version.ref = "miuix" }
-miuix-blur = { module = "top.yukonga.miuix.kmp:miuix-blur", version.ref = "miuix" }
-miuix-squircle = { module = "top.yukonga.miuix.kmp:miuix-squircle", version.ref = "miuix" }
 
 # SQLDelight
 sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
