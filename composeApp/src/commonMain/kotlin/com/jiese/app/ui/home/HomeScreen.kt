@@ -6,7 +6,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.jiese.app.AppState
 import com.jiese.app.data.model.RelapseRecord
 import kotlinx.datetime.Clock
@@ -109,7 +108,7 @@ private fun StreakCard(streak: Int, score: Double) {
             modifier = Modifier.fillMaxWidth().padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            SmallTitle(text = "🔥 戒色连续 $streak 天", fontSize = 22.sp)
+            SmallTitle(text = "🔥 戒色连续 $streak 天")
             Spacer(Modifier.height(8.dp))
             Text(
                 text = "综合健康分: ${score.toInt()}",

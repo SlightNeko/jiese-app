@@ -10,7 +10,6 @@ import com.jiese.app.data.model.KEY_API_KEY
 import com.jiese.app.data.model.KEY_MODEL_NAME
 import top.yukonga.miuix.kmp.basic.*
 import top.yukonga.miuix.kmp.lists.Caption
-import top.yukonga.miuix.kmp.lists.SwitchPreference
 
 @Composable
 fun SettingsScreen() {
@@ -37,21 +36,21 @@ fun SettingsScreen() {
             Caption(text = "AI 分析配置")
             Card(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    OutlinedTextField(
+                    TextField(
                         value = apiEndpoint,
                         onValueChange = { apiEndpoint = it; repo.setSetting(KEY_API_ENDPOINT, it) },
                         label = "API 地址",
                         modifier = Modifier.fillMaxWidth()
                     )
                     Spacer(Modifier.height(8.dp))
-                    OutlinedTextField(
+                    TextField(
                         value = apiKey,
                         onValueChange = { apiKey = it; repo.setSetting(KEY_API_KEY, it) },
                         label = "API Key",
                         modifier = Modifier.fillMaxWidth()
                     )
                     Spacer(Modifier.height(8.dp))
-                    OutlinedTextField(
+                    TextField(
                         value = modelName,
                         onValueChange = { modelName = it; repo.setSetting(KEY_MODEL_NAME, it) },
                         label = "模型名称",
@@ -61,8 +60,7 @@ fun SettingsScreen() {
                     Text(
                         "兼容 OpenAI API 格式即可，如:\n" +
                         "https://api.openai.com/v1/chat/completions\n" +
-                        "https://api.deepseek.com/v1/chat/completions",
-                        fontSize = 12.dp.value
+                        "https://api.deepseek.com/v1/chat/completions"
                     )
                 }
             }
@@ -98,5 +96,4 @@ fun SettingsScreen() {
 }
 
 private fun exportData() {
-    // TODO: implement data export using repository
 }

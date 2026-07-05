@@ -1,12 +1,12 @@
 package com.jiese.app.ui.home
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import top.yukonga.miuix.kmp.basic.*
-import top.yukonga.miuix.kmp.utils.MiuixPopupWindowUtil
+import top.yukonga.miuix.kmp.theme.MiuixTheme
 
 @Composable
 fun RecordRelapseDialog(
@@ -15,33 +15,33 @@ fun RecordRelapseDialog(
 ) {
     var note by remember { mutableStateOf("") }
 
-    MiuixPopupWindowUtil(
-        popup = {
-            Card(modifier = Modifier.width(320.dp).padding(16.dp)) {
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    SmallTitle(text = "❌ 记录破戒", fontSize = 20.sp)
-                    Spacer(Modifier.height(16.dp))
-                    TextField(
-                        value = note,
-                        onValueChange = { note = it },
-                        label = "破戒原因/情境 (可选)",
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                    Spacer(Modifier.height(24.dp))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Button(onClick = onDismiss) {
-                            Text("取消")
-                        }
-                        Button(onClick = { onConfirm(note.ifBlank { null }) }) {
-                            Text("确认")
-                        }
-                    }
-                }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = "❌ 记录破戒",
+                style = MiuixTheme.textStyles.title2
+            )
+        },
+        text = {
+            Column {
+                TextField(
+                    value = note,
+                    onValueChange = { note = it },
+                    label = "破戒原因/情境 (可选)",
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         },
-        onDismissRequest = onDismiss
+        confirmButton = {
+            Button(onClick = { onConfirm(note.ifBlank { null }) }) {
+                Text("确认")
+            }
+        },
+        dismissButton = {
+            Button(onClick = onDismiss) {
+                Text("取消")
+            }
+        }
     )
 }

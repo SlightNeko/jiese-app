@@ -61,7 +61,7 @@ private fun RelapseStatsTab() {
 
         Card(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.padding(16.dp)) {
-                SmallTitle(text = "破戒时间分布", fontSize = 16.sp)
+                SmallTitle(text = "破戒时间分布")
                 Spacer(Modifier.height(8.dp))
                 monthRelapses.take(20).forEach { relapse ->
                     val dt = Instant.fromEpochMilliseconds(relapse.timestamp)
@@ -103,7 +103,7 @@ private fun SleepStatsTab() {
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Card(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.padding(16.dp)) {
-                SmallTitle(text = "睡眠分析", fontSize = 16.sp)
+                SmallTitle(text = "睡眠分析")
                 Spacer(Modifier.height(8.dp))
                 Text("本周睡眠趋势数据即将上线")
                 Text("通过 设置 → Health Connect 连接睡眠数据")
@@ -129,7 +129,7 @@ private fun StatCard(label: String, value: String) {
 private fun RunningTrendChart(repo: com.jiese.app.data.repository.AppRepository) {
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
-            SmallTitle(text = "近 7 天跑量", fontSize = 16.sp)
+            SmallTitle(text = "近 7 天跑量")
             Spacer(Modifier.height(12.dp))
 
             val now = Clock.System.now().toEpochMilliseconds()
