@@ -69,12 +69,12 @@ kotlin {
 
 android {
     namespace = "com.jiese.app"
-    compileSdk = 34
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.jiese.app"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0.0"
     }

@@ -26,7 +26,7 @@ jobs:
       - name: Accept Licenses & Install Platform
         run: |
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1 || true
-          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "build-tools;34.0.0" 2>&1
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-37" "build-tools;37.0.0" 2>&1
 
       - name: Install Gradle
         run: |
