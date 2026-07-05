@@ -57,7 +57,6 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.sqldelight.android)
-            implementation(libs.health.connect.client)
         }
 
         iosMain.dependencies {
@@ -69,12 +68,12 @@ kotlin {
 
 android {
     namespace = "com.jiese.app"
-    compileSdk = 37
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.jiese.app"
         minSdk = 28
-        targetSdk = 37
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
     }

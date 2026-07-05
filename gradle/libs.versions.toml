@@ -7,7 +7,6 @@ ktor = "2.3.12"
 kotlinx-serialization = "1.7.3"
 kotlinx-datetime = "0.6.1"
 miuix = "0.9.3"
-health-connect = "1.1.0"
 androidx-activity = "1.9.3"
 coroutines = "1.9.0"
 
@@ -37,7 +36,6 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 
 # Android
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
-health-connect-client = { module = "androidx.health.connect:connect-client", version.ref = "health-connect" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
