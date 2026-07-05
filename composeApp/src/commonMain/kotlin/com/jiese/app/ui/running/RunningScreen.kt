@@ -11,6 +11,9 @@ import com.jiese.app.AppState
 import com.jiese.app.data.model.RunningRecord
 import com.jiese.app.network.AiApiClient
 import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import top.yukonga.miuix.kmp.basic.*
 
 @Composable
@@ -75,8 +78,8 @@ fun RunningScreen() {
 
 @Composable
 private fun RunningRecordCard(record: RunningRecord) {
-    val dateStr = kotlinx.datetime.Instant.fromEpochMilliseconds(record.timestamp)
-        .toLocalDateTime(kotlinx.datetime.TimeZone.currentSystemDefault())
+    val dateStr = Instant.fromEpochMilliseconds(record.timestamp)
+        .toLocalDateTime(TimeZone.currentSystemDefault())
     val date = "${dateStr.year}-${dateStr.monthNumber.toString().padStart(2, '0')}-${dateStr.dayOfMonth.toString().padStart(2, '0')}"
     val time = "${dateStr.hour.toString().padStart(2, '0')}:${dateStr.minute.toString().padStart(2, '0')}"
 
