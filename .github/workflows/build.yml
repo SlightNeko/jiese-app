@@ -28,17 +28,20 @@ jobs:
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1 || true
           $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-35" "build-tools;35.0.0" 2>&1
 
-      - name: Install Gradle
+      - name: Install Gradle & Generate Wrapper
         run: |
           wget -q https://services.gradle.org/distributions/gradle-8.14.1-bin.zip
           unzip -q gradle-8.14.1-bin.zip
-          echo "$PWD/gradle-8.14.1/bin" >> $GITHUB_PATH
-
-      - name: Generate Gradle Wrapper
-        run: gradle wrapper --gradle-version 8.14.1
+          mkdir -p /tmp/gradle-init && cd /tmp/gradle-init
+          ../gradle-8.14.1/bin/gradle wrapper --gradle-version 8.14.1
+          cp gradlew gradlew.bat "$GITHUB_WORKSPACE/"
+          cp gradle/wrapper/gradle-wrapper.jar "$GITHUB_WORKSPACE/gradle/wrapper/"
 
       - name: Build with Gradle
-        run: ./gradlew composeApp:assembleDebug --no-daemon --stacktrace
+        run: |
+          cd $GITHUB_WORKSPACE
+          chmod +x gradlew
+          ./gradlew composeApp:assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
