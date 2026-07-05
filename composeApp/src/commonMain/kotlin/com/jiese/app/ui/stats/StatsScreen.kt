@@ -26,10 +26,10 @@ fun StatsScreen() {
         }
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            ScrollableTabBar(
+            TabRow(
                 tabs = tabs,
-                selectedIndex = selectedTab,
-                onSelectedIndexChanged = { selectedTab = it }
+                selectedTabIndex = selectedTab,
+                onTabSelected = { selectedTab = it }
             )
             when (selectedTab) {
                 0 -> RelapseStatsTab()

@@ -9,7 +9,6 @@ import com.jiese.app.data.model.KEY_API_ENDPOINT
 import com.jiese.app.data.model.KEY_API_KEY
 import com.jiese.app.data.model.KEY_MODEL_NAME
 import top.yukonga.miuix.kmp.basic.*
-import top.yukonga.miuix.kmp.lists.Caption
 
 @Composable
 fun SettingsScreen() {
@@ -33,7 +32,7 @@ fun SettingsScreen() {
         }
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            Caption(text = "AI 分析配置")
+            SmallTitle(text = "AI 分析配置")
             Card(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     TextField(
@@ -66,7 +65,7 @@ fun SettingsScreen() {
             }
 
             Spacer(Modifier.height(16.dp))
-            Caption(text = "数据管理")
+            SmallTitle(text = "数据管理")
             Card(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Button(
@@ -82,7 +81,7 @@ fun SettingsScreen() {
             }
 
             Spacer(Modifier.height(16.dp))
-            Caption(text = "关于")
+            SmallTitle(text = "关于")
             Card(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Row(Modifier.fillMaxWidth(), Arrangement.SpaceBetween) {

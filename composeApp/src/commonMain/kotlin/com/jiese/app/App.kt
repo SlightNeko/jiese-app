@@ -1,6 +1,7 @@
 package com.jiese.app
 
 import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.jiese.app.ui.home.HomeScreen
 import com.jiese.app.ui.stats.StatsScreen
 import com.jiese.app.ui.running.RunningScreen
@@ -8,12 +9,13 @@ import com.jiese.app.ui.settings.SettingsScreen
 import top.yukonga.miuix.kmp.basic.NavigationBar
 import top.yukonga.miuix.kmp.basic.NavigationBarItem
 import top.yukonga.miuix.kmp.basic.Scaffold
+import top.yukonga.miuix.kmp.icon.MiuixIcons
 
-enum class Screen(val label: String) {
-    Home("首页"),
-    Stats("统计"),
-    Running("跑步"),
-    Settings("设置")
+enum class Screen(val label: String, val icon: ImageVector) {
+    Home("首页", MiuixIcons.Home),
+    Stats("统计", MiuixIcons.All),
+    Running("跑步", MiuixIcons.Location),
+    Settings("设置", MiuixIcons.Settings)
 }
 
 @Composable
@@ -27,6 +29,7 @@ fun App() {
                     NavigationBarItem(
                         selected = currentScreen == screen,
                         onClick = { currentScreen = screen },
+                        icon = screen.icon,
                         label = screen.label,
                     )
                 }
