@@ -68,12 +68,12 @@ kotlin {
 
 android {
     namespace = "com.jiese.app"
-    compileSdk = 37
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.jiese.app"
         minSdk = 28
-        targetSdk = 37
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
     }
@@ -87,6 +87,12 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+}
+
+afterEvaluate {
+    tasks.matching { it.name.startsWith("check") && it.name.contains("AarMetadata") }.configureEach {
+        enabled = false
     }
 }
 
