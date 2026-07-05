@@ -54,11 +54,11 @@ class AppRepository(private val db: JieSeDatabase) {
                 timestamp = row.timestamp,
                 distanceKm = row.distance_km,
                 durationSec = row.duration_sec.toInt(),
-                avgHr = row.avg_hr,
-                maxHr = row.max_hr,
+                avgHr = row.avg_hr?.toInt(),
+                maxHr = row.max_hr?.toInt(),
                 avgPace = row.avg_pace,
-                avgCadence = row.avg_cadence,
-                maxCadence = row.max_cadence,
+                avgCadence = row.avg_cadence?.toInt(),
+                maxCadence = row.max_cadence?.toInt(),
                 earnedScore = row.earned_score
             )
         }
@@ -71,11 +71,11 @@ class AppRepository(private val db: JieSeDatabase) {
                 timestamp = row.timestamp,
                 distanceKm = row.distance_km,
                 durationSec = row.duration_sec.toInt(),
-                avgHr = row.avg_hr,
-                maxHr = row.max_hr,
+                avgHr = row.avg_hr?.toInt(),
+                maxHr = row.max_hr?.toInt(),
                 avgPace = row.avg_pace,
-                avgCadence = row.avg_cadence,
-                maxCadence = row.max_cadence,
+                avgCadence = row.avg_cadence?.toInt(),
+                maxCadence = row.max_cadence?.toInt(),
                 earnedScore = row.earned_score
             )
         }
@@ -88,11 +88,11 @@ class AppRepository(private val db: JieSeDatabase) {
                 timestamp = row.timestamp,
                 distanceKm = row.distance_km,
                 durationSec = row.duration_sec.toInt(),
-                avgHr = row.avg_hr,
-                maxHr = row.max_hr,
+                avgHr = row.avg_hr?.toInt(),
+                maxHr = row.max_hr?.toInt(),
                 avgPace = row.avg_pace,
-                avgCadence = row.avg_cadence,
-                maxCadence = row.max_cadence,
+                avgCadence = row.avg_cadence?.toInt(),
+                maxCadence = row.max_cadence?.toInt(),
                 earnedScore = row.earned_score
             )
         }
@@ -111,7 +111,7 @@ class AppRepository(private val db: JieSeDatabase) {
     ) {
         db.jieSeDatabaseQueries.insertRunningRecord(
             timestamp, distanceKm, durationSec.toLong(),
-            avgHr, maxHr, avgPace,
+            avgHr?.toLong(), maxHr?.toLong(), avgPace,
             avgCadence?.toLong(), maxCadence?.toLong(),
             hrZones, aiAnalysis, earnedScore
         )

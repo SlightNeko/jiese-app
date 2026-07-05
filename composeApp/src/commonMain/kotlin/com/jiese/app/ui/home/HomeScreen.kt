@@ -31,7 +31,7 @@ fun HomeScreen() {
         longestStreak = repo.getSetting("max_streak")?.toIntOrNull() ?: 0
     }
 
-    val streak = remember(latestRelapse) {
+    val streak: Int = remember(latestRelapse?.timestamp) {
         engine.calculateCurrentStreak(latestRelapse?.timestamp, Clock.System.now().toEpochMilliseconds())
     }
 
